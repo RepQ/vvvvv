@@ -6,14 +6,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     public Player player;
-    public Vector2 velPlayer;
-    public Vector2 posPlayer;
+    public OnDeath DeathPlayer;
+    public int playerLifes;
+    public Vector2 playerVelocityinit;
+    public Vector2 playerPositionInit;
 
     private void Awake()
     {
         if (gameManager == null)
         {
             gameManager = this;
+            DeathPlayer += OnDeathPlayer;
+            DeathPlayer += LogicDeathPlayer;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -31,5 +35,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnDeathPlayer()
+    {
+        Debug.LogWarning("Muerte del player");
+        DeathPlayer?.Invoke();
+    }
+    public void LogicDeathPlayer()
+    {
+
+        Destroy(player.gameObject);
     }
 }

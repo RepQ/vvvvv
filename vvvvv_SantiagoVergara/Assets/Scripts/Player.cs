@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void OnDeath();
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rg2d;
@@ -15,8 +16,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        velocity = GameManager.gameManager.velPlayer;
-        position = GameManager.gameManager.posPlayer;
+        velocity = GameManager.gameManager.playerVelocityinit;
+        position = GameManager.gameManager.playerPositionInit;
 
         rg2d.transform.position = position;
     }
@@ -34,6 +35,17 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rg2d.gravityScale *= -1;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("death"))
+        {
+            if (GameManager.gameManager.DeathPlayer != null)
+            {
+                GameManager.gameManager.DeathPlayer();
+            }
         }
     }
 }
