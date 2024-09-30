@@ -2,22 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void OnDeath();
+
 public class Player : MonoBehaviour
 {
+    public delegate void onDeath();
+    public event onDeath deathPlayer;
+
+    public delegate void onChangeZone(Collider2D collision);
+    public event onChangeZone changeZone;
+
     public Rigidbody2D rg2d;
-    private Vector2 velocity;
-    private Vector2 position;
+    public Vector2 velocity;
+    public Vector2 position;
 
     private void Awake()
     {
         rg2d = GetComponent<Rigidbody2D>();
     }
+    private void OnDisable()
+    {
+        deathPlayer -= GameManager.gameManager.DeathPlayerHandle;
+        changeZone -= GameManager.gameManager.ChangeZoneHandle;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        velocity = GameManager.gameManager.playerVelocityinit;
         position = GameManager.gameManager.playerPositionInit;
+        velocity = GameManager.gameManager.playerVelocityinit;
 
         rg2d.transform.position = position;
     }
@@ -27,7 +38,8 @@ public class Player : MonoBehaviour
     {
         float strength = Input.GetAxis("Horizontal");
 
-        rg2d.velocity = new Vector2(strength * velocity.x, rg2d.velocity.y);
+        rg2d.velocity = new Vector2(strength * velocity.x, 
+            Mathf.Clamp(rg2d.velocity.y, -velocity.y, velocity.y));
     }
 
     private void Update()
@@ -40,12 +52,26 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("death"))
+        if (collision.gameObject.CompareTag("Death"))
         {
-            if (GameManager.gameManager.DeathPlayer != null)
-            {
-                GameManager.gameManager.DeathPlayer();
-            }
+            deathPlayer?.Invoke();
         }
+
+        if (collision.gameObject.CompareTag("ZoneRight"))
+        {
+            changeZone?.Invoke(collision);
+        }
+        else if (collision.gameObject.CompareTag("ZoneLeft"))
+        {
+
+        }
+    }
+
+
+    public void ResetPlayer()
+    {
+        rg2d.velocity = Vector2.zero;
+        rg2d.position = position;
+        rg2d.gravityScale = Mathf.Abs(rg2d.gravityScale);
     }
 }
