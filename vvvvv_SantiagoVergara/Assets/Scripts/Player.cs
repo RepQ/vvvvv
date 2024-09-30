@@ -5,27 +5,25 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public delegate void onDeath();
-    public event onDeath deathPlayer;
-
-    public delegate void onChangeZone(Collider2D collision, float direction);
-    public event onChangeZone changeZone;
-
-    public LayerMask wallLayer;
+    public event OnChangeZone OnChangeZone;
+    public event OnDeath OnDeathPlayer;
+    public LayerMask groundLayer;
     public Rigidbody2D rg2d;
     public Vector2 velocity;
     public Vector2 position;
     private bool isGrounded;
-    private float strength;
+    private Vector2 playerDirection;
+    private float horizontalDirection;
+    private float verticalDirection;
 
     private void Awake()
     {
         rg2d = GetComponent<Rigidbody2D>();
     }
+
     private void OnDisable()
     {
-        deathPlayer -= GameManager.gameManager.DeathPlayerHandle;
-        changeZone -= GameManager.gameManager.ChangeZoneHandle;
+        OnDeathPlayer -= GameManager.gameManager.DeathPlayerHandle;
     }
     // Start is called before the first frame update
     void Start()
@@ -39,26 +37,30 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        strength = Input.GetAxis("Horizontal");
+        horizontalDirection = Input.GetAxisRaw("Horizontal");
+        verticalDirection = rg2d.velocity.normalized.y;
+        playerDirection = new Vector2(horizontalDirection, verticalDirection);
 
-        RaycastHit2D hitWall = Physics2D.Raycast(rg2d.transform.position, Vector2.right * Mathf.Sign(strength), 1.0f, wallLayer);
-        if (hitWall.collider != null)
+        //RaycastHit2D hitWall = Physics2D.Raycast(rg2d.transform.position, Vector2.right * Mathf.Sign(horizontalDirection), 1.0f, wallLayer);
+        RaycastHit2D hitGround = Physics2D.Raycast(rg2d.transform.position, Vector2.down * Mathf.Sign(rg2d.gravityScale), 3.0f, groundLayer);
+        if (hitGround.collider != null)
         {
-            rg2d.velocity = new Vector2(0, 
-                Mathf.Clamp(rg2d.velocity.y, -velocity.y, velocity.y));
-            Debug.LogWarning("Raycast collider");
+            isGrounded = true;
+            //Debug.LogWarning("is Grounded!");
             //rg2d.AddForce(new Vector2(0, rg2d.gravityScale * 10f), ForceMode2D.Force);
         }
         else
         {
-            rg2d.velocity = new Vector2(strength * velocity.x,
-                Mathf.Clamp(rg2d.velocity.y, -velocity.y, velocity.y));
+            isGrounded= false;
         }
+        rg2d.velocity = new Vector2(horizontalDirection * velocity.x,
+            Mathf.Clamp(rg2d.velocity.y, -velocity.y, velocity.y));
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        Debug.LogWarning(playerDirection.ToString());
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rg2d.gravityScale *= -1;
         }
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Death"))
         {
-            deathPlayer?.Invoke();
+            OnDeathPlayer?.Invoke();
         }
     }
 
@@ -76,7 +78,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ZoneHorizontal"))
         {
-            changeZone?.Invoke(collision, Mathf.Sign(strength));
+            OnChangeZone?.Invoke(collision, Mathf.Sign(horizontalDirection));
+        }
+        else if (collision.gameObject.CompareTag("ZoneVertical"))
+        {
+            OnChangeZone?.Invoke(collision, Mathf.Sign(verticalDirection));
         }
     }
 

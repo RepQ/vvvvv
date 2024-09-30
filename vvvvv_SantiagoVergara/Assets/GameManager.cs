@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
+public delegate void OnChangeZone(Collider2D collision, float direction);
+public delegate void OnDeath();
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
@@ -30,10 +34,14 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        player.deathPlayer += DeathPlayerHandle;
-        player.changeZone += ChangeZoneHandle;
+        player.OnDeathPlayer += DeathPlayerHandle;
+        player.OnChangeZone += ChangeZoneHandle;
     }
 
+    private void OnDisable()
+    {
+        player.OnChangeZone -= ChangeZoneHandle;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -51,8 +59,13 @@ public class GameManager : MonoBehaviour
         player.ResetPlayer();
         if (--playerLifes <= 0)
         {
-            Destroy(GameObject.FindGameObjectWithTag("Player"));
+            DestroyGameObject(player.gameObject);
         }
+    }
+
+    public void DestroyGameObject(GameObject obj)
+    {
+        Destroy(obj);
     }
 
     public void ChangeZoneHandle(Collider2D collision, float direction)

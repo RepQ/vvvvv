@@ -8,6 +8,7 @@ public class CameraMove : MonoBehaviour
     private Camera m_Camera;
 
     public Vector3 cameraPosition;
+    public float durationSmooth;
     private void Awake()
     {
         m_Camera = GetComponent<Camera>();
@@ -41,15 +42,14 @@ public class CameraMove : MonoBehaviour
 
     private IEnumerator SmoothCameraTransition(Vector3 targetPosition)
     {
-        float duration = 0.4f;
         float elapsed = 0f;
 
         Vector3 startPosition = m_Camera.transform.position;
-        while (elapsed < duration)
+        while (elapsed < durationSmooth)
         {
             elapsed += Time.deltaTime;
 
-            m_Camera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / duration);
+            m_Camera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / durationSmooth);
 
             yield return null;
         }

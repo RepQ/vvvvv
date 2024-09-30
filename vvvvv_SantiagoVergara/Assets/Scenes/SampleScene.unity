@@ -824,9 +824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743869f53732f5e4bae73c3099d44bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallLayer:
+  groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   rg2d: {fileID: 0}
   velocity: {x: 0, y: 0}
   position: {x: 0, y: 0}
@@ -1882,6 +1882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraData: {fileID: 11400000, guid: 1614d055a8d25fc429290fc2742c7ff4, type: 2}
   cameraPosition: {x: 0, y: 0, z: 0}
+  durationSmooth: 0.1
 --- !u!1 &547165766
 GameObject:
   m_ObjectHideFlags: 0
