@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void DeathPlayerHandle()
     {
+        Camera.InitPosition();
         player.ResetPlayer();
         if (--playerLifes <= 0)
         {
@@ -54,8 +55,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeZoneHandle(Collider2D collision)
+    public void ChangeZoneHandle(Collider2D collision, float direction)
     {
-        Camera.ChangeScenarioRight(collision);
+        Camera.ChangeScenarioHorizontal(collision, direction);
     }
 }

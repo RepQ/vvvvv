@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    public Camera_SO cameraData;
     private Camera m_Camera;
 
     public Vector3 cameraPosition;
@@ -14,7 +15,7 @@ public class CameraMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameraPosition = m_Camera.transform.position;
+        InitPosition();
     }
 
     // Update is called once per frame
@@ -23,8 +24,36 @@ public class CameraMove : MonoBehaviour
         
     }
 
-    public void ChangeScenarioRight(Collider2D collider)
+    public void InitPosition()
     {
-        m_Camera.transform.position = new Vector3((collider.transform.position.x - cameraPosition.x) * 2, cameraPosition.y, cameraPosition.z);
+        cameraPosition = cameraData.initPosition;
+        StartCoroutine(SmoothCameraTransition(cameraPosition));
+    }
+    public void ChangeScenarioHorizontal(Collider2D collider, float direction)
+    {
+        cameraPosition = new Vector3
+            (cameraPosition.x + Mathf.Abs(collider.transform.position.x - cameraPosition.x) * 2 * direction,
+            cameraPosition.y, 
+            cameraPosition.z);
+
+        StartCoroutine(SmoothCameraTransition(cameraPosition));
+    }
+
+    private IEnumerator SmoothCameraTransition(Vector3 targetPosition)
+    {
+        float duration = 0.4f;
+        float elapsed = 0f;
+
+        Vector3 startPosition = m_Camera.transform.position;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            m_Camera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / duration);
+
+            yield return null;
+        }
+
+        m_Camera.transform.position = targetPosition;
     }
 }
