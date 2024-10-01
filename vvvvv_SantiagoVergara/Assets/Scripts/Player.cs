@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public Vector2 velocity;
     public Vector2 position;
     private bool isGrounded;
-    private Vector2 playerDirection;
     private float horizontalDirection;
     private float verticalDirection;
 
@@ -38,16 +37,13 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         horizontalDirection = Input.GetAxisRaw("Horizontal");
-        verticalDirection = rg2d.velocity.normalized.y;
-        playerDirection = new Vector2(horizontalDirection, verticalDirection);
+        verticalDirection = Mathf.Sign(rg2d.velocity.y);
 
         //RaycastHit2D hitWall = Physics2D.Raycast(rg2d.transform.position, Vector2.right * Mathf.Sign(horizontalDirection), 1.0f, wallLayer);
         RaycastHit2D hitGround = Physics2D.Raycast(rg2d.transform.position, Vector2.down * Mathf.Sign(rg2d.gravityScale), 3.0f, groundLayer);
         if (hitGround.collider != null)
         {
             isGrounded = true;
-            //Debug.LogWarning("is Grounded!");
-            //rg2d.AddForce(new Vector2(0, rg2d.gravityScale * 10f), ForceMode2D.Force);
         }
         else
         {
@@ -59,7 +55,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Debug.LogWarning(playerDirection.ToString());
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rg2d.gravityScale *= -1;

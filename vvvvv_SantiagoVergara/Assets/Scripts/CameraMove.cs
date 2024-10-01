@@ -22,7 +22,7 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void InitPosition()
@@ -36,10 +36,17 @@ public class CameraMove : MonoBehaviour
             (cameraPosition.x + Mathf.Abs(collider.transform.position.x - cameraPosition.x) * 2 * direction,
             cameraPosition.y, 
             cameraPosition.z);
-
         StartCoroutine(SmoothCameraTransition(cameraPosition));
     }
 
+    public void ChangeScenarioVertical(Collider2D collider, float direction)
+    {
+        cameraPosition = new Vector3
+            (cameraPosition.x,
+            cameraPosition.y + Mathf.Abs(collider.transform.position.y - cameraPosition.y) * 2 * direction,
+            cameraPosition.z);
+        StartCoroutine(SmoothCameraTransition(cameraPosition));
+    }
     private IEnumerator SmoothCameraTransition(Vector3 targetPosition)
     {
         float elapsed = 0f;

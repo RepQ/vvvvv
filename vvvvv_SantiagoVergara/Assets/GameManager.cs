@@ -70,6 +70,13 @@ public class GameManager : MonoBehaviour
 
     public void ChangeZoneHandle(Collider2D collision, float direction)
     {
-        Camera.ChangeScenarioHorizontal(collision, direction);
+        if (collision.gameObject.CompareTag("ZoneHorizontal"))
+        {
+            Camera.ChangeScenarioHorizontal(collision, direction);
+        }
+        else if (collision.gameObject.CompareTag("ZoneVertical"))
+        {
+            Camera.ChangeScenarioVertical(collision, direction);
+        }
     }
 }
