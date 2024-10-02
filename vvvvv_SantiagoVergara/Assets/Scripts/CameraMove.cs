@@ -5,26 +5,43 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     public Camera_SO cameraData;
-    private Camera m_Camera;
 
+    private Camera mainCamera;
+    private Vector2 sizeViewCamara;
+
+    public Player player;
+    private float verticalView;
+    private float horizontaView;
     public Vector3 cameraPosition;
     public float durationSmooth;
     private void Awake()
     {
-        m_Camera = GetComponent<Camera>();
+        mainCamera = Camera.main;
     }
     // Start is called before the first frame update
     void Start()
     {
         InitPosition();
+        sizeViewCamara.x = mainCamera.orthographicSize * mainCamera.aspect;
+        sizeViewCamara.y = mainCamera.orthographicSize;
     }
 
-    // Update is called once per frame
-    void Update()
+    
+    void LateUpdate()
     {
+        if (player.rg2d.position.x > cameraPosition.x + sizeViewCamara.x)
+        {
 
+        }
     }
 
+    public void CheckPlayerPosition()
+    {
+        if (player != null)
+        {
+
+        }
+    }
     public void InitPosition()
     {
         cameraPosition = cameraData.initPosition;
@@ -51,16 +68,16 @@ public class CameraMove : MonoBehaviour
     {
         float elapsed = 0f;
 
-        Vector3 startPosition = m_Camera.transform.position;
+        Vector3 startPosition = mainCamera.transform.position;
         while (elapsed < durationSmooth)
         {
             elapsed += Time.deltaTime;
 
-            m_Camera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / durationSmooth);
+            mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / durationSmooth);
 
             yield return null;
         }
 
-        m_Camera.transform.position = targetPosition;
+        mainCamera.transform.position = targetPosition;
     }
 }

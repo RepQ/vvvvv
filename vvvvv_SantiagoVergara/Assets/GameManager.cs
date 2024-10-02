@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
 
-    public CameraMove Camera;
+    private Camera mainCamara;
+    private Vector2 sizeViewCamara;
 
     public Player player;
     public int playerLifes;
@@ -45,6 +46,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCamara = Camera.main;
+        sizeViewCamara.x = mainCamara.orthographicSize * mainCamara.aspect;
+        sizeViewCamara.y = mainCamara.orthographicSize;
     }
 
     // Update is called once per frame
