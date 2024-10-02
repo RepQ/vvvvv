@@ -10,8 +10,6 @@ public class CameraMove : MonoBehaviour
     private Vector2 sizeViewCamara;
 
     public Player player;
-    private float verticalView;
-    private float horizontaView;
     public Vector3 cameraPosition;
     public float durationSmooth;
     private void Awake()

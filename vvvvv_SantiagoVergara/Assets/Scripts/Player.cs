@@ -5,50 +5,52 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public event OnChangeZone OnChangeZone;
-    public event OnDeath OnDeathPlayer;
     public LayerMask groundLayer;
     public Rigidbody2D rg2d;
     public Vector2 velocity;
     public Vector2 position;
+    private RaycastHit2D[] hits;
     private bool isGrounded;
     private float horizontalDirection;
     private float verticalDirection;
+
 
     private void Awake()
     {
         rg2d = GetComponent<Rigidbody2D>();
     }
 
-    private void OnDisable()
-    {
-        OnDeathPlayer -= GameManager.gameManager.DeathPlayerHandle;
-    }
     // Start is called before the first frame update
     void Start()
     {
+        hits = new RaycastHit2D[3];
         position = GameManager.gameManager.playerPositionInit;
         velocity = GameManager.gameManager.playerVelocityinit;
 
-        rg2d.transform.position = position;
+        rg2d.position = position;
+        rg2d.rotation = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        int i = -1;
+        isGrounded = false;
         horizontalDirection = Input.GetAxisRaw("Horizontal");
-        verticalDirection = Mathf.Sign(rg2d.velocity.y);
+        verticalDirection = - rg2d.transform.up.y;
 
-        //RaycastHit2D hitWall = Physics2D.Raycast(rg2d.transform.position, Vector2.right * Mathf.Sign(horizontalDirection), 1.0f, wallLayer);
-        RaycastHit2D hitGround = Physics2D.Raycast(rg2d.transform.position, Vector2.down * Mathf.Sign(rg2d.gravityScale), 3.0f, groundLayer);
-        if (hitGround.collider != null)
+        hits[0] = Physics2D.Raycast(rg2d.position, new Vector2(0, verticalDirection), 2.0f, groundLayer);
+        hits[1] = Physics2D.Raycast(rg2d.position, new Vector2(-transform.localScale.x / 2, transform.localScale.y / 2).normalized, 2.0f, groundLayer);
+        hits[2] = Physics2D.Raycast(rg2d.position, new Vector2(transform.localScale.x / 2, transform.localScale.y / 2).normalized, 2.0f, groundLayer);
+
+        Debug.DrawLine(rg2d.transform.position, rg2d.transform.position - rg2d.transform.up * 2.0f, Color.yellow);
+        Debug.DrawLine(rg2d.position, rg2d.transform.position - (new Vector3(-transform.localScale.x / 2, transform.localScale.y / 2).normalized) * 2.0f, Color.red);
+        Debug.DrawLine(rg2d.position, rg2d.transform.position - (new Vector3(1, 1.5f, 0).normalized) * 2.0f, Color.red);
+        while (++i < 3)
         {
-            isGrounded = true;
+            if (hits[i].collider != null) { isGrounded = true; }
         }
-        else
-        {
-            isGrounded= false;
-        }
+        Debug.Log(isGrounded);
         rg2d.velocity = new Vector2(horizontalDirection * velocity.x,
             Mathf.Clamp(rg2d.velocity.y, -velocity.y, velocity.y));
     }
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rg2d.gravityScale *= -1;
+            rg2d.rotation += 180f;
         }
     }
 
@@ -65,7 +68,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Death"))
         {
-            OnDeathPlayer?.Invoke();
+            GameManager.gameManager.DeathPlayerHandle();
         }
     }
 
@@ -73,11 +76,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ZoneHorizontal"))
         {
-            OnChangeZone?.Invoke(collision, Mathf.Sign(horizontalDirection));
         }
         else if (collision.gameObject.CompareTag("ZoneVertical"))
         {
-            OnChangeZone?.Invoke(collision, Mathf.Sign(verticalDirection));
         }
     }
 

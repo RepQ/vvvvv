@@ -33,16 +33,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        player.OnDeathPlayer += DeathPlayerHandle;
-        player.OnChangeZone += ChangeZoneHandle;
-    }
-
-    private void OnDisable()
-    {
-        player.OnChangeZone -= ChangeZoneHandle;
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void DeathPlayerHandle()
     {
-        Camera.InitPosition();
+        //Camera.InitPosition();
         player.ResetPlayer();
         if (--playerLifes <= 0)
         {
@@ -76,11 +66,11 @@ public class GameManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ZoneHorizontal"))
         {
-            Camera.ChangeScenarioHorizontal(collision, direction);
+            //Camera.ChangeScenarioHorizontal(collision, direction);
         }
         else if (collision.gameObject.CompareTag("ZoneVertical"))
         {
-            Camera.ChangeScenarioVertical(collision, direction);
+            //Camera.ChangeScenarioVertical(collision, direction);
         }
     }
 }

@@ -1379,7 +1379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7002e78913f688b4ea59302323b887c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 519420033}
   player: {fileID: 280642310}
   playerLifes: 3
   playerVelocityinit: {x: 20, y: 90}
@@ -2123,6 +2122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraData: {fileID: 11400000, guid: 1614d055a8d25fc429290fc2742c7ff4, type: 2}
+  player: {fileID: 280642310}
   cameraPosition: {x: 0, y: 0, z: 0}
   durationSmooth: 0
 --- !u!1 &547165766
