@@ -2,20 +2,28 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    static public CameraMove instance;
     public Camera_SO cameraData;
     public Player playerToFollow;
     public float smoothTime = 0.3f;
     public float offsetX = 5f; // Offset horizontal para anticipar el movimiento del jugador
-    public float transitionThreshold = 0.1f; // Umbral para iniciar la transición
 
     private Camera mainCamera;
     private Vector2 sizeViewCamera;
     private Vector3 velocity = Vector3.zero;
-    private float lastTransitionTime;
+    public Vector3 targetPosition;
+    public Vector3 staticPosition;
+    public bool isStatic = true;
 
     private void Awake()
     {
-        mainCamera = Camera.main;
+        if (instance == null)
+        {
+            mainCamera = Camera.main;
+            instance = this;
+        }
+        else
+            Destroy(instance);
     }
 
     void Start()
@@ -28,14 +36,21 @@ public class CameraMove : MonoBehaviour
     {
         if (playerToFollow == null) return;
 
-        Vector3 targetPosition = CalculateTargetPosition();
-
-        // Suaviza el movimiento de la cámara
-
-        if (playerToFollow.isDashing)
-            UpdateCameraPosition();
+        if (isStatic)
+        {
+            FollowPlayer(staticPosition);
+            Debug.Log(isStatic);
+        }
         else
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        {
+            targetPosition = CalculateTargetPosition();
+            FollowPlayer(targetPosition);
+        }
+    }
+    public void FollowPlayer(Vector3 target)
+    {
+        // Suaviza el movimiento de la cámara
+        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, smoothTime);
     }
 
     private Vector3 CalculateTargetPosition()
@@ -55,6 +70,7 @@ public class CameraMove : MonoBehaviour
         if (cameraData != null)
         {
             transform.position = cameraData.initPosition;
+            staticPosition = transform.position;
         }
     }
 
