@@ -13,7 +13,6 @@ public class CameraMove : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     public Vector3 targetPosition;
     public Vector3 staticPosition;
-    public bool isStatic = true;
 
     private void Awake()
     {
@@ -36,16 +35,9 @@ public class CameraMove : MonoBehaviour
     {
         if (playerToFollow == null) return;
 
-        if (isStatic)
-        {
-            FollowPlayer(staticPosition);
-            Debug.Log(isStatic);
-        }
-        else
-        {
-            targetPosition = CalculateTargetPosition();
-            FollowPlayer(targetPosition);
-        }
+        targetPosition = CalculateTargetPosition();
+        FollowPlayer(targetPosition);
+  
     }
     public void FollowPlayer(Vector3 target)
     {
@@ -91,74 +83,3 @@ public class CameraMove : MonoBehaviour
         }
     }
 }
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class CameraMove : MonoBehaviour
-//{
-//    public Camera_SO cameraData;
-
-//    private Camera mainCamera;
-//    private Vector2 sizeViewCamara;
-
-//    public Player playerToFollow;
-//    public Vector3 cameraPosition;
-//    public float durationSmooth;
-//    private void Awake()
-//    {
-//        mainCamera = Camera.main;
-//    }
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-//        InitPosition();
-//        sizeViewCamara.x = mainCamera.orthographicSize * mainCamera.aspect;
-//        sizeViewCamara.y = mainCamera.orthographicSize;
-//    }
-
-
-//    void LateUpdate()
-//    {
-//        if (playerToFollow.rg2d.position.x > cameraPosition.x + sizeViewCamara.x)
-//        {
-//            StartCoroutine(SmoothCameraTransition(new Vector3((cameraPosition.x + sizeViewCamara.x) * 2, cameraPosition.y, cameraPosition.z)));
-//        }
-//        else if (playerToFollow.rg2d.position.x < cameraPosition.x - sizeViewCamara.x)
-//        {
-//            StartCoroutine(SmoothCameraTransition(new Vector3((cameraPosition.x - sizeViewCamara.x) * -2, cameraPosition.y, cameraPosition.z)));
-//        }
-//    }
-
-//    public void CheckPlayerPosition()
-//    {
-//        if (playerToFollow != null)
-//        {
-
-//        }
-//    }
-//    public void InitPosition()
-//    {
-//        cameraPosition = cameraData.initPosition;
-//        StartCoroutine(SmoothCameraTransition(cameraPosition));
-//    }
-
-
-//    private IEnumerator SmoothCameraTransition(Vector3 targetPosition)
-//    {
-//        float elapsed = 0f;
-
-//        Vector3 startPosition = mainCamera.transform.position;
-//        while (elapsed < durationSmooth)
-//        {
-//            elapsed += Time.deltaTime;
-
-//            mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / durationSmooth);
-
-//            yield return null;
-//        }
-
-//        mainCamera.transform.position = targetPosition;
-//        cameraPosition = mainCamera.transform.position;
-//    }
-//}

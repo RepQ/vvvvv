@@ -66,15 +66,6 @@ public class Player : MonoBehaviour
         {
             GameManager.gameManager.DeathPlayerHandle();
         }
-        //if (collision.gameObject.CompareTag("ZoneVertical"))
-        //{
-        //    if (CameraMove.instance.isStatic == false)
-        //    {
-        //        CameraMove.instance.isStatic = true;
-        //        CameraMove.instance.targetPosition = new Vector3(rg2d.position.x, CameraMove.instance.transform.position.y, CameraMove.instance.transform.position.z);
-        //    }
-        //    else CameraMove.instance.isStatic = false;
-        //}
     }
 
     private void HandleDashPlayer()
