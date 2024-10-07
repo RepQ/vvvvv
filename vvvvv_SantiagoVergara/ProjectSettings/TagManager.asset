@@ -15,7 +15,7 @@ TagManager:
   - Water
   - UI
   - wallLayer
-  - 
+  - deathLayer
   - 
   - 
   - 
@@ -41,6 +41,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: parallax
+    uniqueID: 1077185353
+    locked: 0
+  - name: backGroundLayer
+    uniqueID: 735287911
+    locked: 0
+  - name: player
+    uniqueID: 388790419
+    locked: 0
+  - name: groundLayer
+    uniqueID: 1323843595
+    locked: 0
+  - name: camara
+    uniqueID: 3702379883
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
