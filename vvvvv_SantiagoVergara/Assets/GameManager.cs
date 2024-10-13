@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public int playerLifes;
     public Vector2 playerVelocityinit;
     public Vector2 playerPositionInit;
+    public float playerGravity;
 
 
     private void Awake()

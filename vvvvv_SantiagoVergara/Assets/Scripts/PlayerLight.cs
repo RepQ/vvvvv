@@ -6,7 +6,9 @@ public class PlayerLight : MonoBehaviour
 {
     public Player playerToFollow;
     public float durationSmooth;
-
+    public float offSetMovement;
+    private Vector3 velocity = Vector2.zero;
+    private Vector3 target;
     private void Awake()
     {
 
@@ -18,48 +20,43 @@ public class PlayerLight : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        StartCoroutine(SmoothLightPlayerTransition(playerToFollow.transform.position));
+        if (playerToFollow == null) return;
+        target = CalculateTargetPosition();
+
+        FollowTo(target);
     }
 
-    private IEnumerator SmoothLightPlayerTransition(Vector3 targetPosition)
+    public void FollowTo(Vector3 target)
     {
-        float elapsed = 0f;
+        // Suaviza el movimiento de la cámara
+       transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, durationSmooth);
+    }
 
-        Vector3 startPosition = transform.position;
-        while (elapsed < durationSmooth)
+    public Vector3 CalculateTargetPosition()
+    {
+        Vector3 playerPosition = playerToFollow.playerPosition;
+        float playerVelocityX = playerToFollow.playerVelocity.x;
+        float playerVelocityY = playerToFollow.playerVelocity.y;
+        float targetX;
+
+        // Calcula la posición objetivo basada en la posición del jugador y su velocidad
+        if (playerVelocityX > 0)
         {
-            elapsed += Time.deltaTime;
-            float t = elapsed / durationSmooth;
-            float easeValue = EaseInOutBounce(t);
-            transform.position = Vector3.Lerp(startPosition, targetPosition, easeValue);
-
-            yield return null;
+            targetX = playerPosition.x + offSetMovement;
         }
-
-        transform.position = targetPosition;
-    }
-
-    public static float EaseOutBounce(float x)
-    {
-        float n1 = 7.5625f;
-        float d1 = 2.75f;
-
-        if (x < 1 / d1)
-            return n1 * x * x;
-        else if (x < 2 / d1)
-            return n1 * (x -= 1.5f / d1) * x + 0.75f;
-        else if (x < 2.5 / d1)
-            return n1 * (x -= 2.25f / d1) * x + 0.9375f;
+        else if (playerVelocityX < 0)
+        {
+            targetX = playerPosition.x - offSetMovement;
+        }
         else
-            return n1 * (x -= 2.625f / d1) * x + 0.984375f;
-    }
+        {
+            targetX = playerPosition.x;
+        }
+        float targetY = playerPosition.y + (playerVelocityY > 0 ? offSetMovement : -offSetMovement);
 
-    public static float EaseInOutBounce(float x)
-    {
-        return x < 0.5
-            ? (1 - EaseOutBounce(1 - 2 * x)) / 2
-            : (1 + EaseOutBounce(2 * x - 1)) / 2;
+        // Mantén la posición Y y Z de la cámara
+        return new Vector3(targetX, targetY, transform.position.z);
     }
 }

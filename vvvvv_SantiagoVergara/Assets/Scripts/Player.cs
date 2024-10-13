@@ -6,27 +6,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Layers")]
     public LayerMask groundLayer;
+
+    [Header("References")]
     public Animator animatorPlayer;
     public SpriteRenderer playerSprite;
     private CapsuleCollider2D playerCollider;
     public Rigidbody2D rg2d;
-    public Vector2 velocity;
-    public Vector2 position;
-    private float horizontalDirection;
-    private RaycastHit2D[] hits;
+
+    [Header("Player Data")]
+    public float playerGravity;
+    public Vector2 playerVelocity;
+    public Vector2 playerPosition;
+    public float horizontalDirection;
+
+    private RaycastHit2D[] hits = new RaycastHit2D[3];
 
     private bool isGrounded = false;
     private bool isGravityInverted = false;
     private bool canDash = true;
-    public bool isDashing;
+    public bool isDashing = false;
 
     [SerializeField] float raycastDistance = 1.5f;
     [SerializeField] float dashImpulse = 1200f;
     [SerializeField] float dashCooldown = 2f;
     [SerializeField] float dashDuration = 0.2f;
     private float dashTimeRemaining = 0f;
-
     private float lastTimeDash = 0f;
 
 
@@ -39,25 +45,22 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hits = new RaycastHit2D[3];
-        position = GameManager.gameManager.playerPositionInit;
-        velocity = GameManager.gameManager.playerVelocityinit;
-
-        ResetPlayer();
+        playerPosition = GameManager.gameManager.playerPositionInit;
+        playerVelocity = GameManager.gameManager.playerVelocityinit;
+        playerGravity = GameManager.gameManager.playerGravity;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
         CheckGrounded();
-        CheckDirectionPlayer();
-        PlayerMove();
     }
 
     private void Update()
     {
+        PlayerMove();
         InvertGravityPlayer();
-        HandleDashPlayer();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -90,8 +93,8 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        rg2d.velocity = new Vector2(horizontalDirection * (velocity.x + dashImpulse),
-            Mathf.Clamp(rg2d.velocity.y, -velocity.y, velocity.y));
+        rg2d.velocity = new Vector2(horizontalDirection * (playerVelocity.x + dashImpulse),
+            Mathf.Clamp(rg2d.velocity.y, -playerGravity, playerGravity));
         //rg2d.AddForce(new Vector2(horizontalDirection * dashImpulse, 0), ForceMode2D.Impulse);
         animatorPlayer.SetTrigger("dash");
         canDash = false;
@@ -117,19 +120,23 @@ public class Player : MonoBehaviour
     {
         horizontalDirection = Input.GetAxisRaw("Horizontal");
 
+        HandleDashPlayer();
         if (!isDashing)
         {
-            rg2d.velocity = new Vector2(horizontalDirection * velocity.x,
-                Mathf.Clamp(rg2d.velocity.y, -velocity.y, velocity.y));
+            rg2d.velocity = new Vector2(horizontalDirection * playerVelocity.x,
+                Mathf.Clamp(rg2d.velocity.y, -playerGravity, playerGravity));
         }
         animatorPlayer.SetFloat("horizontal", rg2d.velocity.x);
+
+        playerPosition = rg2d.position;
+        playerVelocity = rg2d.velocity;
+        CheckDirectionPlayer();
     }
     private void CheckGrounded()
     {
-        int i = -1;
         isGrounded = false;
         Vector2 raycastDirection = isGravityInverted ? Vector2.up : Vector2.down;
-        Vector2 raycastOrigin = rg2d.position +
+        Vector2 raycastOrigin = playerPosition +
             (isGravityInverted ? Vector2.up : Vector2.down) *
             new Vector2(0, playerCollider.size.y / 2);
         Vector2 raycastOffset = new(playerCollider.size.x / 2, 0);
@@ -144,10 +151,11 @@ public class Player : MonoBehaviour
         //Debug.DrawLine(raycastOrigin + raycastOffset, raycastOrigin + raycastOffset - raycastDirection * raycastDistance, Color.red);
         //Debug.DrawLine(raycastOrigin - raycastOffset, raycastOrigin - raycastOffset - raycastDirection * raycastDistance, Color.red);
 
-        while (++i < 3)
+        for (int i = 0; i < hits.Length; i++)
         {
-            if (hits[i].collider != null) { isGrounded = true;}
+            if (hits[i].collider != null) isGrounded = true;
         }
+        Debug.Log(isGrounded);
     }
 
     private void CheckDirectionPlayer()
@@ -165,7 +173,7 @@ public class Player : MonoBehaviour
     public void ResetPlayer()
     {
         rg2d.velocity = Vector2.zero;
-        rg2d.position = position;
+        rg2d.position = GameManager.gameManager.playerPositionInit;
         rg2d.gravityScale = Mathf.Abs(rg2d.gravityScale);
         isGravityInverted = false;
     }
