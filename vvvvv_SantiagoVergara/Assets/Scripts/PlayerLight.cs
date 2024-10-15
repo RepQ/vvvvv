@@ -9,9 +9,10 @@ public class PlayerLight : MonoBehaviour
     public float offSetMovement;
     private Vector3 velocity = Vector2.zero;
     private Vector3 target;
+
+    
     private void Awake()
     {
-
     }
     // Start is called before the first frame update
     void Start()
@@ -28,12 +29,16 @@ public class PlayerLight : MonoBehaviour
         FollowTo(target);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
     public void FollowTo(Vector3 target)
     {
         // Suaviza el movimiento de la cámara
        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, durationSmooth);
     }
-
+    
     public Vector3 CalculateTargetPosition()
     {
         Vector3 playerPosition = playerToFollow.playerPosition;

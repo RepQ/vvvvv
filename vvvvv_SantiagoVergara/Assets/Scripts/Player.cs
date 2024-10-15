@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
     }
     private void InvertGravityPlayer()
     {
-        if (Input.GetMouseButtonDown(0) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             isGravityInverted = !isGravityInverted;
             rg2d.gravityScale *= -1;
@@ -129,7 +129,6 @@ public class Player : MonoBehaviour
         animatorPlayer.SetFloat("horizontal", rg2d.velocity.x);
 
         playerPosition = rg2d.position;
-        Debug.LogWarning(rg2d.velocity);
         CheckDirectionPlayer();
     }
     private void CheckGrounded()
