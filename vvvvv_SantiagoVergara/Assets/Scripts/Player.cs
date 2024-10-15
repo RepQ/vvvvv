@@ -28,10 +28,10 @@ public class Player : MonoBehaviour
     private bool canDash = true;
     public bool isDashing = false;
 
-    [SerializeField] float raycastDistance = 1.5f;
-    [SerializeField] float dashImpulse = 1200f;
-    [SerializeField] float dashCooldown = 2f;
-    [SerializeField] float dashDuration = 0.2f;
+    [SerializeField] float raycastDistance;
+    [SerializeField] float dashImpulse;
+    [SerializeField] float dashCooldown;
+    [SerializeField] float dashDuration;
     private float dashTimeRemaining = 0f;
     private float lastTimeDash = 0f;
 
@@ -93,9 +93,9 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        rg2d.velocity = new Vector2(horizontalDirection * (playerVelocity.x + dashImpulse),
-            Mathf.Clamp(rg2d.velocity.y, -playerGravity, playerGravity));
-        //rg2d.AddForce(new Vector2(horizontalDirection * dashImpulse, 0), ForceMode2D.Impulse);
+        //rg2d.velocity = new Vector2(horizontalDirection * (playerVelocity.x + dashImpulse),
+        //    Mathf.Clamp(rg2d.velocity.y, -playerGravity, playerGravity));
+        rg2d.AddForce(new Vector2(horizontalDirection * dashImpulse, 0), ForceMode2D.Impulse);
         animatorPlayer.SetTrigger("dash");
         canDash = false;
         dashTimeRemaining = dashDuration;
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
         animatorPlayer.SetFloat("horizontal", rg2d.velocity.x);
 
         playerPosition = rg2d.position;
-        playerVelocity = rg2d.velocity;
+        Debug.LogWarning(rg2d.velocity);
         CheckDirectionPlayer();
     }
     private void CheckGrounded()

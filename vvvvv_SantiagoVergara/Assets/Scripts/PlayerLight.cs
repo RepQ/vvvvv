@@ -37,9 +37,10 @@ public class PlayerLight : MonoBehaviour
     public Vector3 CalculateTargetPosition()
     {
         Vector3 playerPosition = playerToFollow.playerPosition;
-        float playerVelocityX = playerToFollow.playerVelocity.x;
-        float playerVelocityY = playerToFollow.playerVelocity.y;
+        float playerVelocityX = playerToFollow.rg2d.velocity.x;
+        float playerVelocityY = playerToFollow.rg2d.velocity.y;
         float targetX;
+        float targetY;
 
         // Calcula la posición objetivo basada en la posición del jugador y su velocidad
         if (playerVelocityX > 0)
@@ -54,7 +55,7 @@ public class PlayerLight : MonoBehaviour
         {
             targetX = playerPosition.x;
         }
-        float targetY = playerPosition.y + (playerVelocityY > 0 ? offSetMovement : -offSetMovement);
+        targetY = playerPosition.y;
 
         // Mantén la posición Y y Z de la cámara
         return new Vector3(targetX, targetY, transform.position.z);
