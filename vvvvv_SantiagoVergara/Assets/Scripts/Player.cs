@@ -53,7 +53,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         CheckGrounded();
     }
 
@@ -63,6 +62,18 @@ public class Player : MonoBehaviour
         InvertGravityPlayer();
     }
 
+    private void OnEnable()
+    {
+        CameraMove.instance.OnPlayerCreation += SetPlayerToFollow;
+        //SetPlayerToFollow();
+        Debug.Log(CameraMove.instance.playerToFollow);
+
+    }
+
+    public void SetPlayerToFollow()
+    {
+        CameraMove.instance.playerToFollow = GetComponent<Player>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Death"))

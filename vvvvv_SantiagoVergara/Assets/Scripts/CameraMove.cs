@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour, Followers
 {
+    public delegate void PlayerCreation();
+    public event PlayerCreation OnPlayerCreation;
+
     static public CameraMove instance;
     public Player playerToFollow;
 
+    public bool cameraON = true;
     public float smoothTime = 0.3f;
     public float offsetX = 5f; // Offset horizontal para anticipar el movimiento del jugador
 
@@ -27,7 +31,7 @@ public class CameraMove : MonoBehaviour, Followers
 
     void Start()
     {
-
+        
     }
 
     void LateUpdate()
@@ -36,8 +40,25 @@ public class CameraMove : MonoBehaviour, Followers
 
         targetPosition = CalculateTargetPosition();
         FollowTo(targetPosition);
-  
+
+        if (cameraON == false)
+        {
+            gameObject.GetComponent<CameraMove>().enabled = false;
+        }
+        else if (cameraON == true)
+        {
+            gameObject.GetComponent<CameraMove>().enabled = true;
+        }
     }
+
+    private void Update()
+    {
+        if (playerToFollow == null)
+        {
+            OnPlayerCreation?.Invoke();
+        }
+    }
+    
     public void FollowTo(Vector3 target)
     {
         // Suaviza el movimiento de la cámara
