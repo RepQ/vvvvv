@@ -7,8 +7,9 @@ public class CamaraLimit : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CameraMove.instance.enabled = !CameraMove.instance.enabled;
-        Debug.Log(CameraMove.instance.cameraON);
-
+        CameraMove.instance.CameraON = !CameraMove.instance.CameraON;
+        bool isCameraON = CameraMove.instance.CameraON;
+        if (isCameraON == false)
+            CameraMove.instance.targetPosition = transform.position;
     }
 }

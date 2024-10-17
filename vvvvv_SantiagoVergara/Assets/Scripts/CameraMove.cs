@@ -1,22 +1,26 @@
 using UnityEngine;
 
-public class CameraMove : MonoBehaviour, Followers
+public class CameraMove : MonoBehaviour
 {
     public delegate void PlayerCreation();
     public event PlayerCreation OnPlayerCreation;
 
     static public CameraMove instance;
+
+    [Header("PLayer References")]
     public Player playerToFollow;
-
-    public bool cameraON = true;
+    [Header("Camera Stats")]
     public float smoothTime = 0.3f;
-    public float offsetX = 5f; // Offset horizontal para anticipar el movimiento del jugador
+    public float offsetX = 5f;
+    public bool CameraON = true;
 
-    private Camera mainCamera;
-    private Vector3 velocity = Vector3.zero;
+    [Header("Main Camara Reference")]
+    [SerializeField] Camera mainCamera;
 
-    public Vector3 targetPosition;
+    private Vector2 velocity = Vector2.zero;
 
+    [Header("Position of Target")]
+    public Vector2 targetPosition;
 
     private void Awake()
     {
@@ -37,18 +41,11 @@ public class CameraMove : MonoBehaviour, Followers
     void LateUpdate()
     {
         if (playerToFollow == null) return;
-
-        targetPosition = CalculateTargetPosition();
-        FollowTo(targetPosition);
-
-        if (cameraON == false)
+        if (CameraON)
         {
-            gameObject.GetComponent<CameraMove>().enabled = false;
+            targetPosition = CalculateTargetPosition();
         }
-        else if (cameraON == true)
-        {
-            gameObject.GetComponent<CameraMove>().enabled = true;
-        }
+            FollowTo(targetPosition);
     }
 
     private void Update()
@@ -59,21 +56,22 @@ public class CameraMove : MonoBehaviour, Followers
         }
     }
     
-    public void FollowTo(Vector3 target)
+    public void FollowTo(Vector2 target)
     {
-        // Suaviza el movimiento de la cámara
-        mainCamera.transform.position = Vector3.SmoothDamp(mainCamera.transform.position, target, ref velocity, smoothTime);
+        // Suaviza el movimiento de la cï¿½mara
+        mainCamera.transform.position = Vector2.SmoothDamp(mainCamera.transform.position, target, ref velocity, smoothTime);
+        mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, -10);
     }
 
     public Vector3 CalculateTargetPosition()
     {
-        Vector3 playerPosition = playerToFollow.playerPosition;
+        Vector2 playerPosition = playerToFollow.playerPosition;
         float playerVelocityX = playerToFollow.playerVelocity.x;
 
-        // Calcula la posición objetivo basada en la posición del jugador y su velocidad
+        // Calcula la posiciï¿½n objetivo basada en la posiciï¿½n del jugador y su velocidad
         float targetX = playerPosition.x + (playerVelocityX > 0 ? offsetX : -offsetX);
 
-        // Mantén la posición Y y Z de la cámara
-        return new Vector3(targetX, mainCamera.transform.position.y, mainCamera.transform.position.z);
+        // Mantï¿½n la posiciï¿½n Y y Z de la cï¿½mara
+        return new Vector2(targetX, mainCamera.transform.position.y);
     }
 }

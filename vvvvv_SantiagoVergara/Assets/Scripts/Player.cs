@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player playerInstace;
     [Header("Layers")]
     public LayerMask groundLayer;
 
@@ -38,8 +39,13 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        if (playerInstace != null && playerInstace != this)
+        {
+            Destroy(gameObject);
+        }
         rg2d = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<CapsuleCollider2D>();
+        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 
 public delegate void OnChangeZone(Collider2D collision, float direction);
@@ -14,7 +15,10 @@ public class GameManager : MonoBehaviour
     private Camera mainCamara;
     private Vector2 sizeViewCamara;
 
+    [Header("References")]
     public Player player;
+
+    [Header("PLayer Stats")]
     public int playerLifes;
     public Vector2 playerVelocityinit;
     public Vector2 playerPositionInit;
@@ -73,5 +77,12 @@ public class GameManager : MonoBehaviour
         {
             //Camera.ChangeScenarioVertical(collision, direction);
         }
+    }
+
+
+
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
