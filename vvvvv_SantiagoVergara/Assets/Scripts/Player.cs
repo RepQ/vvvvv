@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player playerInstace;
+
     [Header("Layers")]
     public LayerMask groundLayer;
 
@@ -70,15 +71,16 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.gameManager.player = this;
         CameraMove.instance.OnPlayerCreation += SetPlayerToFollow;
         //SetPlayerToFollow();
-        Debug.Log(CameraMove.instance.playerToFollow);
-
     }
 
     public void SetPlayerToFollow()
     {
-        CameraMove.instance.playerToFollow = GetComponent<Player>();
+        CameraMove.instance.playerToFollow = gameObject.GetComponent<Player>();
+        CameraMove.instance.CameraON = true;
+        Debug.Log(CameraMove.instance.playerToFollow.name);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -110,8 +112,6 @@ public class Player : MonoBehaviour
 
     private void Dash()
     {
-        //rg2d.velocity = new Vector2(horizontalDirection * (playerVelocity.x + dashImpulse),
-        //    Mathf.Clamp(rg2d.velocity.y, -playerGravity, playerGravity));
         rg2d.AddForce(new Vector2(horizontalDirection * dashImpulse, 0), ForceMode2D.Impulse);
         animatorPlayer.SetTrigger("dash");
         canDash = false;

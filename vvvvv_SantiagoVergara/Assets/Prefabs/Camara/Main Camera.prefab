@@ -110,7 +110,7 @@ MonoBehaviour:
   smoothTime: 1
   offsetX: 5
   CameraON: 1
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 7037294362097982445}
   targetPosition: {x: 0, y: 0}
 --- !u!114 &5500328007754410272
 MonoBehaviour:

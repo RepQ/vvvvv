@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject objectToSpawn;
     [SerializeField] int Spawns;
 
-    private Stack<GameObject> stack;
+    private Stack<GameObject> spawnStack;
     private Coroutine coroutine;
     private Vector3 SpawnXY;
     private int CounterSpawns;
@@ -15,28 +15,30 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnStack = GameManager.gameManager.stack;
         CounterSpawns = 0;
         SpawnXY = transform.position;
-        stack = new Stack<GameObject>();
         coroutine = StartCoroutine(SpawnGameObject(objectToSpawn));
     }
 
-    private void Push(GameObject obj)
+    public void Push(GameObject obj)
     {
-        stack.Push(obj);
+        spawnStack.Push(obj);
+        Debug.Log(GameManager.gameManager.stack.Count);
         obj.SetActive(false);
     }
 
-    private GameObject Pop()
+    public GameObject Pop()
     {
-        GameObject obj = stack.Pop();
+        GameObject obj = spawnStack.Pop();
         obj.SetActive(true);
+        obj.transform.position = SpawnXY;
         return obj;
     }
 
     private int Count()
     {
-        return stack.Count;
+        return spawnStack.Count;
     }
     // Update is called once per frame
     void Update()

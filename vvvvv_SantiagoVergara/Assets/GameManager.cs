@@ -4,16 +4,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-
-public delegate void OnChangeZone(Collider2D collision, float direction);
-public delegate void OnDeath();
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
+    public Stack<GameObject> stack;
+    [SerializeField] Spawner playerSpawner;
 
     private Camera mainCamara;
-    private Vector2 sizeViewCamara;
 
     [Header("References")]
     public Player player;
@@ -31,6 +28,7 @@ public class GameManager : MonoBehaviour
         {
             gameManager = this;
             DontDestroyOnLoad(gameObject);
+            stack = new Stack<GameObject>();
         }
         else
         {
@@ -42,8 +40,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         mainCamara = Camera.main;
-        sizeViewCamara.x = mainCamara.orthographicSize * mainCamara.aspect;
-        sizeViewCamara.y = mainCamara.orthographicSize;
     }
 
     // Update is called once per frame
@@ -67,22 +63,9 @@ public class GameManager : MonoBehaviour
         Destroy(obj);
     }
 
-    public void ChangeZoneHandle(Collider2D collision, float direction)
-    {
-        if (collision.gameObject.CompareTag("ZoneHorizontal"))
-        {
-            //Camera.ChangeScenarioHorizontal(collision, direction);
-        }
-        else if (collision.gameObject.CompareTag("ZoneVertical"))
-        {
-            //Camera.ChangeScenarioVertical(collision, direction);
-        }
-    }
-
-
-
     public void ChangeScene(string sceneName)
     {
+        playerSpawner.Push(player.gameObject);
         SceneManager.LoadScene(sceneName);
     }
 }

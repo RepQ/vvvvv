@@ -35,7 +35,6 @@ public class PlayerLight : MonoBehaviour
     }
     public void FollowTo(Vector3 target)
     {
-        // Suaviza el movimiento de la cámara
        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, durationSmooth);
     }
     
@@ -47,7 +46,6 @@ public class PlayerLight : MonoBehaviour
         float targetX;
         float targetY;
 
-        // Calcula la posición objetivo basada en la posición del jugador y su velocidad
         if (playerVelocityX > 0)
         {
             targetX = playerPosition.x + offSetMovement;
@@ -62,7 +60,6 @@ public class PlayerLight : MonoBehaviour
         }
         targetY = playerPosition.y;
 
-        // Mantén la posición Y y Z de la cámara
         return new Vector3(targetX, targetY, transform.position.z);
     }
 }
