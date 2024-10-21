@@ -8,14 +8,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     public Stack<GameObject> stack;
-    [SerializeField] Spawner playerSpawner;
+    public Spawner playerSpawner;
 
-    private Camera mainCamara;
+    public CameraMove mainCamara;
 
     [Header("References")]
     public Player player;
 
     [Header("PLayer Stats")]
+    public bool playerIsDeath = false;
     public int playerLifes;
     public Vector2 playerVelocityinit;
     public Vector2 playerPositionInit;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCamara = Camera.main;
+       playerPositionInit = playerSpawner.transform.position;
     }
 
     // Update is called once per frame
@@ -50,11 +51,11 @@ public class GameManager : MonoBehaviour
 
     public void DeathPlayerHandle()
     {
-        //Camera.InitPosition();
         player.ResetPlayer();
+        playerSpawner.ReSpawn(player.gameObject);
         if (--playerLifes <= 0)
         {
-            DestroyGameObject(player.gameObject);
+            playerSpawner.Push(player.gameObject);
         }
     }
 

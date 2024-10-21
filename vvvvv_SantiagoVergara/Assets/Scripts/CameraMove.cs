@@ -4,16 +4,20 @@ using static Player;
 
 public class CameraMove : MonoBehaviour
 {
-    static public CameraMove instance;
+
     public delegate void PlayerCreation();
     public event PlayerCreation OnPlayerCreation;
 
     [Header("PLayer References")]
     public Player playerToFollow;
+
     [Header("Camera Stats")]
     public float smoothTime = 0.3f;
-    public float offsetX = 5f;
+    public float offsetX = 100f;
     public bool CameraON = true;
+    private Vector3 cameraPosition;
+    private float cameraHalfHeight;
+    private float cameraHalfWidth;
 
     [Header("Main Camara Reference")]
     [SerializeField] Camera mainCamera;
@@ -25,19 +29,13 @@ public class CameraMove : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            mainCamera = Camera.main;
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-        else
-            Destroy(gameObject);
     }
 
     void Start()
     {
-
+        cameraPosition = transform.position;
+        cameraHalfHeight = mainCamera.orthographicSize;
+        cameraHalfWidth = cameraHalfHeight * mainCamera.aspect;
     }
 
     void LateUpdate()
@@ -56,19 +54,29 @@ public class CameraMove : MonoBehaviour
         {
             OnPlayerCreation?.Invoke();
         }
+        if (playerToFollow.isDeath == true)
+        {
+            
+        }
     }
     
     public void FollowTo(Vector3 target)
     {
-        mainCamera.transform.position = Vector3.SmoothDamp(mainCamera.transform.position, target, ref velocity, smoothTime);
+       cameraPosition = Vector3.SmoothDamp(cameraPosition, target, ref velocity, smoothTime);
+       mainCamera.transform.position = cameraPosition;
     }
     public Vector3 CalculateTargetPosition()
     {
         Vector3 playerPosition = playerToFollow.playerPosition;
-        float playerVelocityX = playerToFollow.playerVelocity.x;
+        bool outOfLimitsRight = playerPosition.x > cameraPosition.x + cameraHalfWidth - offsetX;
+        bool outOfLimitsLeft = playerPosition.x < cameraPosition.x - cameraHalfWidth + offsetX;
+        float targetX = cameraPosition.x;
 
-        float targetX = playerPosition.x + (playerVelocityX > 0 ? offsetX : -offsetX);
+        if (outOfLimitsRight || outOfLimitsLeft)
+        {
+            targetX = playerPosition.x;
+        }
 
-        return new Vector3(targetX, mainCamera.transform.position.y, mainCamera.transform.position.z);
+        return new Vector3(targetX, cameraPosition.y, cameraPosition.z);
     }
 }

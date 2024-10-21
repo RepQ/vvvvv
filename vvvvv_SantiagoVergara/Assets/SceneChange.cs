@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 
 public class SceneChange : MonoBehaviour
 {
     [Header("Scene To Load")]
-    public string SceneNameToLoad;
+    [SerializeField] SceneAsset SceneName;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        GameManager.gameManager.ChangeScene(SceneNameToLoad);
+        GameManager.gameManager.ChangeScene(SceneName.name);
     }
 }

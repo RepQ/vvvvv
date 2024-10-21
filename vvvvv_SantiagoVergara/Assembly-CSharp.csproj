@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\CameraMove.cs" />
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\SceneChange.cs" />
+    <Compile Include="Assets\Scripts\DeathPlayer.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
   </ItemGroup>
   <ItemGroup>

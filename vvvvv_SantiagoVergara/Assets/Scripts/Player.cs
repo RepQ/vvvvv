@@ -10,12 +10,14 @@ public class Player : MonoBehaviour
 
     [Header("Layers")]
     public LayerMask groundLayer;
+    public LayerMask deathLayer;
 
     [Header("References")]
     public Animator animatorPlayer;
     public SpriteRenderer playerSprite;
-    private CapsuleCollider2D playerCollider;
     public Rigidbody2D rg2d;
+    private CapsuleCollider2D playerCollider;
+    private CameraMove cameraFollower;
 
     [Header("Player Data")]
     public float playerGravity;
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour
 
     private RaycastHit2D[] hits = new RaycastHit2D[3];
 
+    public bool isDeath = false;
     private bool isGrounded = false;
     private bool isGravityInverted = false;
     private bool canDash = true;
@@ -46,6 +49,7 @@ public class Player : MonoBehaviour
         }
         rg2d = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<CapsuleCollider2D>();
+        cameraFollower = GameManager.gameManager.mainCamara;
         DontDestroyOnLoad(this);
     }
 
@@ -72,15 +76,17 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         GameManager.gameManager.player = this;
-        CameraMove.instance.OnPlayerCreation += SetPlayerToFollow;
-        //SetPlayerToFollow();
+        cameraFollower.OnPlayerCreation += SetPlayerToFollow;
     }
 
     public void SetPlayerToFollow()
     {
-        CameraMove.instance.playerToFollow = gameObject.GetComponent<Player>();
-        CameraMove.instance.CameraON = true;
-        Debug.Log(CameraMove.instance.playerToFollow.name);
+        Vector3 cameraPosition = cameraFollower.transform.position;
+
+        cameraFollower.playerToFollow = GetComponent<Player>();
+        cameraFollower.CameraON = true;
+        cameraFollower.transform.position = new Vector3(playerPosition.x, cameraPosition.y, cameraPosition.z);
+        Debug.Log(cameraFollower.playerToFollow.name);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -114,10 +120,10 @@ public class Player : MonoBehaviour
     {
         rg2d.AddForce(new Vector2(horizontalDirection * dashImpulse, 0), ForceMode2D.Impulse);
         animatorPlayer.SetTrigger("dash");
-        canDash = false;
         dashTimeRemaining = dashDuration;
-        isDashing = true;
         lastTimeDash = Time.time;
+        canDash = false;
+        isDashing = true;
     }
 
     private void ResetDash()
@@ -163,15 +169,17 @@ public class Player : MonoBehaviour
         hits[2] = Physics2D.Raycast(raycastOrigin - raycastOffset,
             raycastDirection, raycastDistance, groundLayer);
 
-        //Debug.DrawLine(raycastOrigin, raycastOrigin - raycastDirection * raycastDistance, Color.red);
-        //Debug.DrawLine(raycastOrigin + raycastOffset, raycastOrigin + raycastOffset - raycastDirection * raycastDistance, Color.red);
-        //Debug.DrawLine(raycastOrigin - raycastOffset, raycastOrigin - raycastOffset - raycastDirection * raycastDistance, Color.red);
-
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].collider != null) isGrounded = true;
         }
         Debug.Log(isGrounded);
+    }
+
+    private void CheckDeathLayer()
+    {
+        //isDeath = false;
+
     }
 
     private void CheckDirectionPlayer()
@@ -189,7 +197,6 @@ public class Player : MonoBehaviour
     public void ResetPlayer()
     {
         rg2d.velocity = Vector2.zero;
-        rg2d.position = GameManager.gameManager.playerPositionInit;
         rg2d.gravityScale = Mathf.Abs(rg2d.gravityScale);
         isGravityInverted = false;
     }

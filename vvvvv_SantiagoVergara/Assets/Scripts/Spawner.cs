@@ -24,7 +24,6 @@ public class Spawner : MonoBehaviour
     public void Push(GameObject obj)
     {
         spawnStack.Push(obj);
-        Debug.Log(GameManager.gameManager.stack.Count);
         obj.SetActive(false);
     }
 
@@ -36,6 +35,11 @@ public class Spawner : MonoBehaviour
         return obj;
     }
 
+    public void ReSpawn(GameObject obj)
+    {
+        Push(obj);
+        Pop();
+    }
     private int Count()
     {
         return spawnStack.Count;
