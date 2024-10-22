@@ -20,7 +20,7 @@ public class CameraMove : MonoBehaviour
     private float cameraHalfWidth;
 
     [Header("Main Camara Reference")]
-    [SerializeField] Camera mainCamera;
+    public Camera mainCamera;
 
     private Vector3 velocity = Vector3.zero;
 
@@ -53,10 +53,6 @@ public class CameraMove : MonoBehaviour
         if (playerToFollow == null)
         {
             OnPlayerCreation?.Invoke();
-        }
-        if (playerToFollow.isDeath == true)
-        {
-            
         }
     }
     

@@ -111,7 +111,7 @@ MonoBehaviour:
   offsetX: 5
   CameraON: 1
   mainCamera: {fileID: 7037294362097982445}
-  targetPosition: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5500328007754410272
 MonoBehaviour:
   m_ObjectHideFlags: 0

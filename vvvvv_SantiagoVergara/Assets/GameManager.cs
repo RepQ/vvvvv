@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
         {
             gameManager = this;
             DontDestroyOnLoad(gameObject);
-            stack = new Stack<GameObject>();
         }
         else
         {
@@ -40,7 +39,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       playerPositionInit = playerSpawner.transform.position;
+        stack = new Stack<GameObject>();
+        playerPositionInit = playerSpawner.transform.position;
     }
 
     // Update is called once per frame

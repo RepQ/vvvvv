@@ -44,11 +44,6 @@ public class Spawner : MonoBehaviour
     {
         return spawnStack.Count;
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private IEnumerator SpawnGameObject(GameObject obj)
     {

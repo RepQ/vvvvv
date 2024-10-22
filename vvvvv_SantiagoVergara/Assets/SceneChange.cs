@@ -8,7 +8,7 @@ using UnityEngine;
 public class SceneChange : MonoBehaviour
 {
     [Header("Scene To Load")]
-    [SerializeField] SceneAsset SceneName;
+    public SceneAsset SceneName;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {

@@ -78,6 +78,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  deathLayer:
+    serializedVersion: 2
+    m_Bits: 0
   animatorPlayer: {fileID: 70570418046383}
   playerSprite: {fileID: 1123639272397746623}
   rg2d: {fileID: 0}
@@ -85,6 +88,7 @@ MonoBehaviour:
   playerVelocity: {x: 0, y: 0}
   playerPosition: {x: 0, y: 0}
   horizontalDirection: 0
+  isDeath: 0
   isDashing: 0
   raycastDistance: 1.5
   dashImpulse: 10
@@ -5117,7 +5121,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 6bd5addc679ad32b0b40e84e93782c17
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 1
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3

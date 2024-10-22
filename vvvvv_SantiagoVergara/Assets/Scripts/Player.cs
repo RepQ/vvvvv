@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player playerInstace;
-
     [Header("Layers")]
     public LayerMask groundLayer;
     public LayerMask deathLayer;
@@ -43,19 +41,15 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if (playerInstace != null && playerInstace != this)
-        {
-            Destroy(gameObject);
-        }
-        rg2d = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<CapsuleCollider2D>();
         cameraFollower = GameManager.gameManager.mainCamara;
-        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update
     void Start()
     {
+
+        rg2d = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
         playerPosition = GameManager.gameManager.playerPositionInit;
         playerVelocity = GameManager.gameManager.playerVelocityinit;
         playerGravity = GameManager.gameManager.playerGravity;
@@ -95,6 +89,7 @@ public class Player : MonoBehaviour
             GameManager.gameManager.DeathPlayerHandle();
         }
     }
+
 
     private void HandleDashPlayer()
     {
