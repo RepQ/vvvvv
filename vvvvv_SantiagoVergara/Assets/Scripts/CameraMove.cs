@@ -15,6 +15,8 @@ public class CameraMove : MonoBehaviour
     public float smoothTime = 0.3f;
     public float offsetX = 100f;
     public bool CameraON = true;
+    public GameObject CameraLimitLeft;
+    public GameObject CameraLimitRight;
     private Vector3 cameraPosition;
     private float cameraHalfHeight;
     private float cameraHalfWidth;
@@ -64,14 +66,21 @@ public class CameraMove : MonoBehaviour
     public Vector3 CalculateTargetPosition()
     {
         Vector3 playerPosition = playerToFollow.playerPosition;
-        bool outOfLimitsRight = playerPosition.x > cameraPosition.x + cameraHalfWidth - offsetX;
-        bool outOfLimitsLeft = playerPosition.x < cameraPosition.x - cameraHalfWidth + offsetX;
+        Vector3 LimitLeft = CameraLimitLeft.transform.position;
+        Vector3 LimitRight = CameraLimitRight.transform.position;
+
+        bool OffsetRight = playerPosition.x > cameraPosition.x + cameraHalfWidth - offsetX;
+        bool OffsetLeft = playerPosition.x < cameraPosition.x - cameraHalfWidth + offsetX;
         float targetX = cameraPosition.x;
 
-        if (outOfLimitsRight || outOfLimitsLeft)
+        if (OffsetRight || OffsetLeft)
         {
             targetX = playerPosition.x;
         }
+        if (playerPosition.x < LimitLeft.x)
+            targetX = LimitLeft.x;
+        else if (playerPosition.x > LimitRight.x)
+            targetX = LimitRight.x;
 
         return new Vector3(targetX, cameraPosition.y, cameraPosition.z);
     }
