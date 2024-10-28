@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 5877600907463942897}
   - component: {fileID: 4226443660985069359}
   - component: {fileID: 3318001966304556911}
-  - component: {fileID: 8486662370641836534}
-  - component: {fileID: 5473278560805380548}
+  - component: {fileID: 467291984633802035}
+  - component: {fileID: 3309254131869910447}
   m_Layer: 7
   m_Name: UpObstacle1
-  m_TagString: Untagged
+  m_TagString: isDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,7 +221,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -35.476185, y: -11.205223}
+  m_Offset: {x: -35.504864, y: -11.205223}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -232,10 +232,10 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5908585, y: 4.412159}
+  m_Size: {x: 0.9926834, y: 4.412159}
   m_EdgeRadius: 0
---- !u!61 &8486662370641836534
-BoxCollider2D:
+--- !u!70 &467291984633802035
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -266,20 +266,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -35.512817, y: -8.358283}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9976349, y: 1.2540302}
-  m_EdgeRadius: 0
---- !u!114 &5473278560805380548
+  m_Offset: {x: -35.50566, y: -8.3845415}
+  m_Size: {x: 1.0046082, y: 1.4053402}
+  m_Direction: 0
+--- !u!114 &3309254131869910447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,6 +278,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7215133879935280365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ba3626734294e4a89368447fc3f451, type: 3}
+  m_Script: {fileID: 11500000, guid: 2002f1d2471b00c4e8b1b944f6c8eee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyRigidBody: {fileID: 0}
+  player: {fileID: 0}
+  enemyVelocityX: 0
+  enemyVelocityY: 0
+  enemyDamage: 0
+  enemyLife: 0
+  enemyPushPlayer: 50
+  maxDamage: 10
+  minDamage: 20

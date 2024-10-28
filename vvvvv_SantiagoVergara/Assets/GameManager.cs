@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     public Stack<GameObject> stack;
+
+    [Header(" Global References")]
     public Spawner playerSpawner;
 
     public CameraMove mainCamara;
-
-    [Header("References")]
+    public LifeBar playerLifeBar;
     public Player player;
 
     [Header("PLayer Stats")]
@@ -41,12 +43,6 @@ public class GameManager : MonoBehaviour
     {
         stack = new Stack<GameObject>();
         playerPositionInit = playerSpawner.transform.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void DeathPlayerHandle()

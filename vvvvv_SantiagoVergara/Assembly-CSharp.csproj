@@ -60,15 +60,19 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\PlayerLight.cs" />
+    <Compile Include="Assets\Scripts\DamageObjects\DeathPlayer.cs" />
+    <Compile Include="Assets\Scripts\Enemys\Enemy.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\Followers.cs" />
-    <Compile Include="Assets\Scripts\CamaraLimit.cs" />
-    <Compile Include="Assets\Scripts\CameraMove.cs" />
+    <Compile Include="Assets\Scripts\Player\LifeBar\LifeBar.cs" />
+    <Compile Include="Assets\Scripts\Enemys\Bat.cs" />
+    <Compile Include="Assets\Scripts\ParallaxEffect2D.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerLight.cs" />
     <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraMove.cs" />
+    <Compile Include="Assets\Scripts\Enemys\Snail.cs" />
     <Compile Include="Assets\SceneChange.cs" />
-    <Compile Include="Assets\Scripts\DeathPlayer.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\DamageObjects\SpineDamage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
