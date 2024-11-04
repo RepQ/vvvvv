@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using static Player;
+using UnityEngine.U2D;
 
 public class CameraMove : MonoBehaviour
 {
@@ -8,15 +8,17 @@ public class CameraMove : MonoBehaviour
     public delegate void PlayerCreation();
     public event PlayerCreation OnPlayerCreation;
 
+    private GameManager gameManagerEvent;
+
     [Header("PLayer References")]
     public Player playerToFollow;
 
     [Header("Camera Stats")]
-    public float smoothTime = 0.3f;
-    public float offsetX = 100f;
-    public bool CameraON = true;
+    private float smoothTime;
+    public float offsetX;
     public GameObject CameraLimitLeft;
     public GameObject CameraLimitRight;
+
     private Vector3 cameraPosition;
     private float cameraHalfHeight;
     private float cameraHalfWidth;
@@ -24,34 +26,47 @@ public class CameraMove : MonoBehaviour
     [Header("Main Camara Reference")]
     public Camera mainCamera;
 
-    private Vector3 velocity = Vector3.zero;
+    private Vector3 velocityX = Vector3.zero;
+    private Vector3 velocityY = Vector3.zero;
 
     [Header("Position of Target")]
     public Vector3 targetPosition;
 
     private void Awake()
     {
+        GameManager.gameManager.mainCamara = this;
     }
-
     void Start()
     {
-        cameraPosition = transform.position;
+        smoothTime = 0.5f;
         cameraHalfHeight = mainCamera.orthographicSize;
         cameraHalfWidth = cameraHalfHeight * mainCamera.aspect;
     }
 
+    private void OnEnable()
+    {
+        cameraPosition = transform.position;
+    }
     void LateUpdate()
     {
         if (playerToFollow == null) return;
-        if (CameraON == true)
-        {
+        if (CameraLimitLeft != null && CameraLimitRight != null)
             targetPosition = CalculateTargetPosition();
-        }
+        else
+            targetPosition = cameraPosition;
         FollowTo(targetPosition);
     }
 
     private void Update()
     {
+        if ((CameraLimitLeft == null || CameraLimitRight == null) && GameManager.gameManager.cameraLimits.Count > 0)
+        {
+            GameObject firstLimit = GameManager.gameManager.cameraLimits[0];
+            GameObject secondLimit = GameManager.gameManager.cameraLimits[1];
+
+            CameraLimitLeft = firstLimit.GetComponent<CameraLimits>().isLeft ? firstLimit : secondLimit;
+            CameraLimitRight = CameraLimitLeft.Equals(firstLimit) ? secondLimit : firstLimit;
+        }
         if (playerToFollow == null)
         {
             OnPlayerCreation?.Invoke();
@@ -60,28 +75,27 @@ public class CameraMove : MonoBehaviour
     
     public void FollowTo(Vector3 target)
     {
-       cameraPosition = Vector3.SmoothDamp(cameraPosition, target, ref velocity, smoothTime);
-       mainCamera.transform.position = cameraPosition;
+        cameraPosition = Vector3.SmoothDamp(cameraPosition, new Vector3(cameraPosition.x, target.y, cameraPosition.z), ref velocityY, 0);
+        cameraPosition = Vector3.SmoothDamp(cameraPosition, new Vector3 (target.x, cameraPosition.y, cameraPosition.z), ref velocityX, smoothTime);
+
+        mainCamera.transform.position = cameraPosition;
     }
     public Vector3 CalculateTargetPosition()
     {
         Vector3 playerPosition = playerToFollow.playerPosition;
-        Vector3 LimitLeft = CameraLimitLeft.transform.position;
-        Vector3 LimitRight = CameraLimitRight.transform.position;
-
-        bool OffsetRight = playerPosition.x > cameraPosition.x + cameraHalfWidth - offsetX;
-        bool OffsetLeft = playerPosition.x < cameraPosition.x - cameraHalfWidth + offsetX;
+        Vector3 LimitLeft = CameraLimitLeft ? CameraLimitLeft.transform.position : cameraPosition;
+        Vector3 LimitRight = CameraLimitRight ? CameraLimitRight.transform.position : cameraPosition;
+        Vector3 LimitUp = new (cameraPosition.x, cameraHalfHeight);
+        Vector3 LimitDown = new(cameraPosition.x, -cameraHalfHeight);
         float targetX = cameraPosition.x;
+        float targetY = cameraPosition.y;
 
-        if (OffsetRight || OffsetLeft)
-        {
+        if (Mathf.Abs(cameraPosition.x - playerPosition.x) >= cameraHalfWidth - offsetX)
             targetX = playerPosition.x;
-        }
-        if (playerPosition.x < LimitLeft.x)
-            targetX = LimitLeft.x;
-        else if (playerPosition.x > LimitRight.x)
-            targetX = LimitRight.x;
+        targetX = Mathf.Clamp(targetX, LimitLeft.x, LimitRight.x);
 
-        return new Vector3(targetX, cameraPosition.y, cameraPosition.z);
+        if (Mathf.Abs(cameraPosition.y - playerPosition.y) >= cameraHalfHeight)
+            targetY = cameraPosition.y + cameraHalfHeight * playerToFollow.verticalDirection * 2;
+        return new Vector3(targetX, targetY, cameraPosition.z);
     }
 }

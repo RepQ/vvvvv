@@ -52,7 +52,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 9
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c8ccbad70bddb54089a02a7858590cb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -92,10 +92,11 @@ MonoBehaviour:
   verticalDirection: 0
   isDeath: 0
   isDashing: 0
+  isHit: 0
   raycastDistance: 1.5
-  dashImpulse: 10
+  dashImpulse: 22
   dashCooldown: 2
-  dashDuration: 0.2
+  dashDuration: 0.5
 --- !u!70 &4385403502536601698
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -128,8 +129,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.08580721}
-  m_Size: {x: 1.58, y: 2.1449265}
+  m_Offset: {x: 0, y: 0.001396766}
+  m_Size: {x: 1.58, y: 2.3193345}
   m_Direction: 0
 --- !u!1 &1061071952475857681
 GameObject:

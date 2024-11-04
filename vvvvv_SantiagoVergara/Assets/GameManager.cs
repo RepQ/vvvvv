@@ -7,8 +7,14 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public bool initGame = false;
     public static GameManager gameManager;
     public Stack<GameObject> stack;
+
+    public bool isChangingScene = false;
+
+    public int lastPlayableScene;
+    public List<GameObject> cameraLimits;
 
     [Header(" Global References")]
     public Spawner playerSpawner;
@@ -21,16 +27,27 @@ public class GameManager : MonoBehaviour
     public bool playerIsDeath = false;
     public int playerLifes;
     public Vector2 playerVelocityinit;
-    public Vector2 playerPositionInit;
     public float playerGravity;
 
+    public GameObject playerRePosition;
 
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    //private static void InitializeGameManager()
+    //{
+    //    if (gameManager == null)
+    //    {
+    //        GameObject gameManagerObject = new GameObject("GameManager");
+    //        gameManager = gameManagerObject.AddComponent<GameManager>();
+    //        DontDestroyOnLoad(gameManagerObject);
+    //    }
+    //}
     private void Awake()
     {
-        if (gameManager == null)
+        if (gameManager == null && gameManager != this)
         {
             gameManager = this;
             DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(playerRePosition);
         }
         else
         {
@@ -42,7 +59,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         stack = new Stack<GameObject>();
-        playerPositionInit = playerSpawner.transform.position;
+        cameraLimits = new List<GameObject>();
     }
 
     public void DeathPlayerHandle()
@@ -60,9 +77,18 @@ public class GameManager : MonoBehaviour
         Destroy(obj);
     }
 
-    public void ChangeScene(string sceneName)
+    public void ChangeScene()
     {
+        isChangingScene = true;
         playerSpawner.Push(player.gameObject);
-        SceneManager.LoadScene(sceneName);
+        cameraLimits.Clear();
+    }
+
+    public void NewScene(GameObject obj)
+    {
+        isChangingScene = false;
+        playerRePosition.transform.position = new Vector3 (obj.transform.position.x + obj.transform.localScale.x * player.horizontalDirection,
+            player.transform.position.y, obj.transform.position.z);
+        StartCoroutine(playerSpawner.SpawnGameObject(playerRePosition));
     }
 }

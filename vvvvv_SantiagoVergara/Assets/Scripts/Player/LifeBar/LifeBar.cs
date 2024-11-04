@@ -12,6 +12,7 @@ public class LifeBar : MonoBehaviour
     private void Awake()
     {
         lifeBar = GetComponent<Slider>();
+        GameManager.gameManager.playerLifeBar = this;
     }
 
     // Update is called once per frame

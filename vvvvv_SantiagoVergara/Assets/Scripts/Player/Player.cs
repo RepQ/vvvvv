@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private bool isGravityInverted = false;
     private bool canDash = true;
     public bool isDashing = false;
+    public bool isHit = false;
 
     [SerializeField] float raycastDistance;
     [SerializeField] float dashImpulse;
@@ -42,20 +43,18 @@ public class Player : MonoBehaviour
     private float dashTimeRemaining = 0f;
     private float lastTimeDash = 0f;
 
-
+    private Coroutine damageCoroutine;
     private void Awake()
     {
-        cameraFollower = GameManager.gameManager.mainCamara;
-        lifeBar = GameManager.gameManager.playerLifeBar;
+        GameManager.gameManager.player = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
         rg2d = GetComponent<Rigidbody2D>();
+        playerPosition = transform.position;
         playerCollider = GetComponent<CapsuleCollider2D>();
-        playerPosition = GameManager.gameManager.playerPositionInit;
         playerVelocity = GameManager.gameManager.playerVelocityinit;
         playerGravity = GameManager.gameManager.playerGravity;
     }
@@ -70,31 +69,34 @@ public class Player : MonoBehaviour
     {
         PlayerMove();
         InvertGravityPlayer();
+        if (isHit == true && damageCoroutine == null)
+            damageCoroutine = StartCoroutine(PlayerGetHit());
         if (playerLife <= 0f)
             isDeath = true;
         if (isDeath)
             GameManager.gameManager.DeathPlayerHandle();
+        Debug.Log(playerVelocity); 
     }
 
     private void OnEnable()
     {
-        GameManager.gameManager.player = this;
         SetCamera();
         SetLifeBar();
     }
 
     public void SetCamera()
     {
+        cameraFollower = GameManager.gameManager.mainCamara;
         Vector3 cameraPosition = cameraFollower.transform.position;
 
         cameraFollower.playerToFollow = GetComponent<Player>();
-        cameraFollower.CameraON = true;
-        cameraFollower.transform.position = new Vector3(playerPosition.x, cameraPosition.y, cameraPosition.z);
-        Debug.Log(cameraFollower.playerToFollow.name);
+        //cameraFollower.transform.position = new Vector3(playerPosition.x, cameraPosition.y, cameraPosition.z);
+        //Debug.Log(cameraFollower.playerToFollow.name);
     }
 
     public void SetLifeBar()
     {
+        lifeBar = GameManager.gameManager.playerLifeBar;
         lifeBar.player = this;
         lifeBar.currentLifePlayer = playerLife;
     }
@@ -144,8 +146,8 @@ public class Player : MonoBehaviour
     }
     private void PlayerMove()
     {
-        horizontalDirection = Input.GetAxisRaw("Horizontal");
-
+        if (isHit == false)
+            horizontalDirection = Input.GetAxisRaw("Horizontal");
         HandleDashPlayer();
         if (!isDashing)
         {
@@ -176,7 +178,6 @@ public class Player : MonoBehaviour
         {
             if (hits[i].collider != null) isGrounded = true;
         }
-        Debug.Log(isGrounded);
     }
 
     private void CheckDeathLayer()
@@ -200,6 +201,7 @@ public class Player : MonoBehaviour
     }
     public void ResetPlayer()
     {
+        StopHits();
         isDeath = false;
         playerLife = 100f;
         rg2d.velocity = Vector2.zero;
@@ -213,5 +215,31 @@ public class Player : MonoBehaviour
         {
             GameManager.gameManager.DeathPlayerHandle();
         }
+    }
+
+    public IEnumerator PlayerGetHit()
+    {
+        float waitSeconds = 0.25f;
+        float time = 0f;
+        float xAux = playerVelocity.x;
+        float yAux = playerVelocity.y;
+
+        while (time < waitSeconds)
+        {
+            rg2d.velocity = new Vector2(-horizontalDirection * xAux,
+                -verticalDirection * yAux / 2);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+        StopHits();
+    }
+
+    private void StopHits()
+    {
+        StopCoroutine(damageCoroutine);
+        damageCoroutine = null;
+        isHit = false;
+        animatorPlayer.SetBool("isHit", false);
     }
 }

@@ -1,22 +1,25 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : MonoBehaviour
 {
-    public Rigidbody2D enemyRigidBody;
-    public Player player;
-
+    private Rigidbody2D enemyRigidBody;
     [Header("Enemy Stats")]
     public float enemyVelocityX;
     public float enemyVelocityY;
     public float enemyDamage;
     public float enemyLife;
     public float enemyPushPlayer;
+    public float maxDamage;
+    public float minDamage;
+    public String limitLayer;
     // Start is called before the first frame update
     public virtual void Start()
     {
-        enemyRigidBody = GetComponent<Rigidbody2D>();
+        if (GetComponent<Rigidbody2D>() != null)
+            enemyRigidBody = GetComponent<Rigidbody2D>();
     }
 
     public virtual void EnemyMovement()
@@ -24,33 +27,25 @@ public class Enemy : MonoBehaviour
         enemyRigidBody.velocity = new Vector2(enemyVelocityX, enemyVelocityY);
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.layer == gameObject.layer)
+        if (collider.gameObject.CompareTag("Player"))
         {
-            enemyVelocityX *= -1;
-            enemyVelocityY *= -1;
-            transform.localScale = new Vector3(transform.localScale.x * -1, 
-                transform.localScale.y, transform.localScale.z);
-        }
-        else
-        {
-            DamagePlayer();
+            Player player;
+            player = collider.gameObject.GetComponent<Player>();
+            DamagePlayer(player);
         }
     }
-
-    public virtual void DamagePlayer()
+    public virtual void DamagePlayer(Player player)
     {
-        player.rg2d.AddForce(new Vector2(-player.horizontalDirection, -player.verticalDirection) * enemyPushPlayer, ForceMode2D.Impulse);
-        player.animatorPlayer.SetTrigger("hitBy");
-        Debug.Log("isHit");
+        player.playerLife -= (UnityEngine.Random.Range(minDamage, maxDamage));
+        player.animatorPlayer.SetBool("isHit", true);
+        player.isHit = true;
     }
 
-    public virtual void Update()
+    public void Update()
     {
-        if (player == null)
-        {
-            player = GameManager.gameManager.player;
-        }
+        if (enemyRigidBody != null)
+            EnemyMovement();
     }
 }

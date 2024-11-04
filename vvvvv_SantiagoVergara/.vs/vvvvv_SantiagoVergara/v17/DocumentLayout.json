@@ -3,52 +3,44 @@
   "WorkspaceRootPath": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|d:\\santiago\\itb\\unityprojects\\vvvvv_santiagovergara\\vvvvv_santiagovergara\\assets\\scripts\\enemys\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemys\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|d:\\santiago\\itb\\unityprojects\\vvvvv_santiagovergara\\vvvvv_santiagovergara\\assets\\scripts\\enemys\\snail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemys\\snail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|d:\\santiago\\itb\\unityprojects\\vvvvv_santiagovergara\\vvvvv_santiagovergara\\assets\\scripts\\enemys\\bat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemys\\bat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\damageobjects\\spinedamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\damageobjects\\spinedamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\parallaxeffect2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\parallaxeffect2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\player\\lifebar\\lifebar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\lifebar\\lifebar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|d:\\santiago\\itb\\unityprojects\\vvvvv_santiagovergara\\vvvvv_santiagovergara\\assets\\scripts\\sceneloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\sceneloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scenechange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scenechange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\camera\\cameramove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camera\\cameramove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\player\\lifebar\\lifebar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\lifebar\\lifebar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\damageobjects\\deathplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\damageobjects\\deathplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|d:\\santiago\\itb\\unityprojects\\vvvvv_santiagovergara\\vvvvv_santiagovergara\\assets\\scripts\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scenechange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scenechange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\assets\\scripts\\camera\\parallaxeffect2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8A6B0DC-2D32-BC96-8B18-450FF5D66D13}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camera\\parallaxeffect2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,110 +50,88 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Bat.cs",
-              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Enemys\\Bat.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemys\\Bat.cs",
-              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Enemys\\Bat.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Enemys\\Bat.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T15:23:10.405Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Enemy.cs",
-              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Enemys\\Enemy.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemys\\Enemy.cs",
-              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Enemys\\Enemy.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Enemys\\Enemy.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAIwAAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T15:23:09.24Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Snail.cs",
-              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Enemys\\Snail.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemys\\Snail.cs",
-              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Enemys\\Snail.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Enemys\\Snail.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T15:22:56.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "SpineDamage.cs",
-              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\DamageObjects\\SpineDamage.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\DamageObjects\\SpineDamage.cs",
-              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\DamageObjects\\SpineDamage.cs",
-              "RelativeToolTip": "Assets\\Scripts\\DamageObjects\\SpineDamage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Title": "SceneLoader.cs",
+              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\SceneLoader.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SceneLoader.cs",
+              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\SceneLoader.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SceneLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T21:51:24.113Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ParallaxEffect2D.cs",
-              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\ParallaxEffect2D.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\ParallaxEffect2D.cs",
-              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\ParallaxEffect2D.cs",
-              "RelativeToolTip": "Assets\\Scripts\\ParallaxEffect2D.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T23:16:12.123Z"
+              "WhenOpened": "2024-11-04T22:52:52.672Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "checkpoint.cs",
+              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\checkpoint.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\checkpoint.cs",
+              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\checkpoint.cs",
+              "RelativeToolTip": "Assets\\Scripts\\checkpoint.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAwwDMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T21:37:15.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ParallaxEffect2D.cs",
+              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Camera\\ParallaxEffect2D.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Camera\\ParallaxEffect2D.cs",
+              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Camera\\ParallaxEffect2D.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Camera\\ParallaxEffect2D.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T14:38:46.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CameraMove.cs",
               "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Camera\\CameraMove.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Camera\\CameraMove.cs",
               "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Camera\\CameraMove.cs",
               "RelativeToolTip": "Assets\\Scripts\\Camera\\CameraMove.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwCgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T21:52:00.087Z"
+              "WhenOpened": "2024-10-24T21:52:00.087Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Player\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Player.cs",
               "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Player\\Player.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\Player.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAA8wFAAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwDUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T21:51:17.331Z"
+              "WhenOpened": "2024-10-24T21:51:17.331Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "LifeBar.cs",
               "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Player\\LifeBar\\LifeBar.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\LifeBar\\LifeBar.cs",
               "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Player\\LifeBar\\LifeBar.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\LifeBar\\LifeBar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T21:43:25.774Z"
+              "WhenOpened": "2024-10-24T21:43:25.774Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "DeathPlayer.cs",
               "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\DamageObjects\\DeathPlayer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\DamageObjects\\DeathPlayer.cs",
@@ -169,43 +139,47 @@
               "RelativeToolTip": "Assets\\Scripts\\DamageObjects\\DeathPlayer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T20:33:45.997Z"
+              "WhenOpened": "2024-10-24T20:33:45.997Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 4,
               "Title": "SceneChange.cs",
               "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\SceneChange.cs",
               "RelativeDocumentMoniker": "Assets\\SceneChange.cs",
               "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\SceneChange.cs",
               "RelativeToolTip": "Assets\\SceneChange.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T22:08:51.893Z"
+              "WhenOpened": "2024-10-17T22:08:51.893Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Spawner.cs",
-              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Spawner.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Spawner.cs",
-              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Spawner.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Spawner.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T22:05:40.835Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "GameManager.cs",
               "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\GameManager.cs",
               "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\GameManager.cs",
               "RelativeToolTip": "Assets\\GameManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T13:59:07.727Z"
+              "WhenOpened": "2024-09-28T13:59:07.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Spawner.cs",
+              "DocumentMoniker": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Spawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Spawner.cs",
+              "ToolTip": "D:\\SANTIAGO\\ITB\\UnityProjects\\vvvvv_SantiagoVergara\\vvvvv_SantiagoVergara\\Assets\\Scripts\\Spawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Spawner.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-17T22:05:40.835Z",
+              "EditorCaption": ""
             }
           ]
         }
