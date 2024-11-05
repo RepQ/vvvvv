@@ -9,6 +9,5 @@ public class CameraLimits : MonoBehaviour
     private void Awake()
     {
         GameManager.gameManager.cameraLimits.Add(gameObject);
-        Debug.Log(GameManager.gameManager.cameraLimits);
     }
 }

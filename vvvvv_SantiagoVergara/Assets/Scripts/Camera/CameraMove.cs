@@ -65,7 +65,7 @@ public class CameraMove : MonoBehaviour
             GameObject secondLimit = GameManager.gameManager.cameraLimits[1];
 
             CameraLimitLeft = firstLimit.GetComponent<CameraLimits>().isLeft ? firstLimit : secondLimit;
-            CameraLimitRight = CameraLimitLeft.Equals(firstLimit) ? secondLimit : firstLimit;
+            CameraLimitRight = firstLimit.GetComponent<CameraLimits>().isLeft ? secondLimit : firstLimit;
         }
         if (playerToFollow == null)
         {
